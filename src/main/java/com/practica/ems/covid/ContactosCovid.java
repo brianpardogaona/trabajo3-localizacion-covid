@@ -58,7 +58,7 @@ public class ContactosCovid {
 		this.listaContactos = listaContactos;
 	}
 
-	public void loadData(String data, boolean reset) throws EmsInvalidTypeException, EmsInvalidNumberOfDataException,
+	public void loadData(String data, boolean reset)throws EmsInvalidTypeException, EmsInvalidNumberOfDataException,
 			EmsDuplicatePersonException, EmsDuplicateLocationException {
 		// borro información anterior
 		if (reset) {
@@ -67,6 +67,11 @@ public class ContactosCovid {
 			this.listaContactos = new ListaContactos();
 		}
 		String datas[] = dividirEntrada(data);
+		checkData(datas);
+	}
+
+	public void checkData(String datas[]) throws EmsInvalidTypeException, EmsInvalidNumberOfDataException,
+			EmsDuplicatePersonException, EmsDuplicateLocationException{
 		for (String linea : datas) {
 			String datos[] = this.dividirLineaData(linea);
 			if (!datos[0].equals("PERSONA") && !datos[0].equals("LOCALIZACION")) {
